@@ -41,17 +41,29 @@ function WebTabsLayout() {
       }}
     >
       <WebTabs.Screen
+        name="(schedule)"
+        options={{
+          title: "Schedule",
+          tabBarIcon: (props) => <MaterialIcons {...props} name="schedule" />,
+        }}
+      />
+      <WebTabs.Screen
+        name="(stations)"
+        options={{
+          title: "Stations",
+          tabBarIcon: (props) => <MaterialIcons {...props} name="train" />,
+        }}
+      />
+      <WebTabs.Screen
         name="index"
         options={{
-          title: "Home",
-          tabBarIcon: (props) => <MaterialIcons {...props} name="home" />,
+          href: null,
         }}
       />
       <WebTabs.Screen
         name="info"
         options={{
-          title: "Info",
-          tabBarIcon: (props) => <MaterialIcons {...props} name="info" />,
+          href: null,
         }}
       />
     </WebTabs>
@@ -61,28 +73,30 @@ function WebTabsLayout() {
 function NativeTabsLayout() {
   return (
     <NativeTabs>
-      <NativeTabs.Trigger name="index">
-        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
+      <NativeTabs.Trigger name="(schedule)">
+        <NativeTabs.Trigger.Label>Schedule</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon
           {...Platform.select({
-            ios: { sf: { default: "house", selected: "house.fill" } },
+            ios: { sf: { default: "clock", selected: "clock.fill" } },
             default: {
-              src: <NativeTabs.Trigger.VectorIcon family={MaterialIcons} name="home" />,
+              src: <NativeTabs.Trigger.VectorIcon family={MaterialIcons} name="schedule" />,
             },
           })}
         />
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="info">
-        <NativeTabs.Trigger.Label>Info</NativeTabs.Trigger.Label>
+      <NativeTabs.Trigger name="(stations)">
+        <NativeTabs.Trigger.Label>Stations</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon
           {...Platform.select({
-            ios: { sf: "cursorarrow.rays" },
+            ios: { sf: { default: "tram", selected: "tram.fill" } },
             default: {
-              src: <NativeTabs.Trigger.VectorIcon family={MaterialIcons} name="info" />,
+              src: <NativeTabs.Trigger.VectorIcon family={MaterialIcons} name="train" />,
             },
           })}
         />
       </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="index" hidden />
+      <NativeTabs.Trigger name="info" hidden />
     </NativeTabs>
   );
 }
